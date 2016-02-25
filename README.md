@@ -15,7 +15,7 @@ The purpose of this is to provide data to work with locally to run analysis.
 #### Setup the Database to save the track data
 
 ```psql
-# CREATE USER spencer WITH PASSWORD 'h4ck3r';
+# CREATE USER owner WITH PASSWORD 'h4ck3r';
 # CREATE DATABASE spotifyechonest OWNER owner;
 # \list
 # \connect spotifyechonest
