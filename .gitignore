@@ -1,0 +1,3 @@
+*.pyc
+# spotipy cache's access token locally
+.cache-*
