@@ -1,10 +1,11 @@
 from pyechonest import track
 
 class Echonest:
-    def track_attributes(self, id):
+    def track_attributes(self, id, name):
         try:
             t = track.track_from_id(id)
             res = {
+                'name': name,
                 'spotify_uri': id,
                 'echonest_id': t.id,
                 'speechiness': t.speechiness,

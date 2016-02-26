@@ -23,6 +23,7 @@ class Database:
         # create the songs table
         sql = """CREATE TABLE IF NOT EXISTS tracks (
             id serial PRIMARY KEY,
+            name varchar,
             spotify_uri varchar,
             echonest_id varchar,
             speechiness float,
@@ -44,9 +45,11 @@ class Database:
 
     def add_row(self, data):
         self.cur.execute(
-            """INSERT INTO tracks (spotify_uri, echonest_id, speechiness, key, energy,
+            """INSERT INTO tracks (name, spotify_uri, echonest_id, speechiness, key, energy,
             liveness, tempo, acousticness, instrumentalness, mode,
-            time_signature, duration, loudness, valence, danceability) VALUES (%(spotify_uri)s,
+            time_signature, duration, loudness, valence, danceability) VALUES (
+            %(name)s,
+            %(spotify_uri)s,
             %(echonest_id)s,
             %(speechiness)s,
             %(key)s,

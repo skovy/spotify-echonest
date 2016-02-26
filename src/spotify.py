@@ -10,18 +10,22 @@ class Spotify:
         self.token = util.prompt_for_user_token(username, scope)
         self.db = Database()
 
-    def saved_tracks(self):
+    def saved_tracks(self, limit, offset):
         if self.token:
             sp = spotipy.Spotify(auth=self.token)
-            results = sp.current_user_saved_tracks()
+            results = sp.current_user_saved_tracks(limit, offset)
             return results['items']
         else:
             print "Can't get token"
             return []
 
-    def parse_saved_tracks(self):
-        for item in self.saved_tracks():
-            # get the song data using Echonest
-            data = self.en.track_attributes(item['track']['uri'])
-            if data:
-                self.db.add_row(data)
+    def parse_saved_tracks(self, num_of_songs, start = 0):
+        offset = start # option to not start at the beginning
+        limit = 50
+        while offset < num_of_songs:
+            for item in self.saved_tracks(limit, offset):
+                # get the song data using Echonest
+                data = self.en.track_attributes(item['track']['uri'], item['track']['name'])
+                if data:
+                    self.db.add_row(data)
+            offset += limit

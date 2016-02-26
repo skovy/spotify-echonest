@@ -13,7 +13,7 @@ def main():
 
     # create and validate a Spotify session
     sp = Spotify(username)
-    sp.parse_saved_tracks()
+    sp.parse_saved_tracks(200, 0)
 
 if __name__ == "__main__":
     main()
