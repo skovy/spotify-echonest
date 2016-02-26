@@ -23,7 +23,7 @@ class Database:
         # create the songs table
         sql = """CREATE TABLE IF NOT EXISTS tracks (
             id serial PRIMARY KEY,
-            name varchar,
+            name varchar unique,
             spotify_uri varchar,
             echonest_id varchar,
             speechiness float,
