@@ -22,7 +22,7 @@ class Spotify:
             print("Can't get token")
             return []
 
-    def parse_saved_tracks(self, num_of_songs, start = 0):
+    def parse_saved_tracks(self, start, num_of_songs):
         offset = start # option to not start at the beginning
         limit = 20 # echonest rate limit :/
         while offset < num_of_songs:
