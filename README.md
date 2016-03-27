@@ -6,11 +6,13 @@ from Echonest using the Spotify URI for each track.
 
 The purpose of this is to provide data to work with locally to run analysis.
 
-**Dependencies**:
+#### Install Dependencies
 
 - `psycopg2` - PostgreSQL Python
 - `spotipy` - Python Spotify Wrapper
 - `pyechonest` - Python Echonest Wrapper
+
+`pip install psycopg2 spotipy pyechonest`
 
 #### Setup the Database to save the track data
 
@@ -30,3 +32,11 @@ export SPOTIPY_CLIENT_SECRET='your-spotify-client-secret'
 export SPOTIPY_REDIRECT_URI='http://localhost'
 export ECHO_NEST_API_KEY='your-echonest-api-key'
 ```
+
+#### Run the script
+
+- `python main.py <spotify-username>`
+- Spotify Authentication will open in your default browser
+- Grant Access
+- Copy the URL to the terminal when prompted (contains the Spotify code)
+- The `tracks` table in the `spotifyechonest` database will contain the data
