@@ -35,7 +35,10 @@ export ECHO_NEST_API_KEY='your-echonest-api-key'
 
 #### Run the script
 
-- `python main.py <spotify-username>`
+- `python main.py <spotify-username> <offset> <limit>`
+  - `spotify-username` *(required)*: Spotify Username to retrieve saved track data (must have access to this account)
+  - `offset` *(optional)*: what index in the saved track list to start at
+  - `limit` *(optional)*: total number of tracks to retrieve audio summary
 - Spotify Authentication will open in your default browser
 - Grant Access
 - Copy the URL to the terminal when prompted (contains the Spotify code)
