@@ -12,12 +12,12 @@ class Database:
             self.conn = psycopg2.connect("dbname='spotifyechonest' user='owner' host='localhost' password='h4ck3r'")
             self.cur = self.conn.cursor()
         except:
-            print "Unable to connect to the database."
+            print("Unable to connect to the database.")
 
     def create_table(self):
         # make sure we have a connection first
         if self.conn == None:
-            print "No database connection."
+            print("No database connection.")
             return false
 
         # create the songs table
@@ -25,6 +25,8 @@ class Database:
             id serial PRIMARY KEY,
             name varchar,
             spotify_uri varchar unique,
+            spotify_album_cover_url varchar,
+            spotify_album_name varchar,
             echonest_id varchar,
             speechiness float,
             key int,
@@ -45,11 +47,14 @@ class Database:
 
     def add_row(self, data):
         self.cur.execute(
-            """INSERT INTO tracks (name, spotify_uri, echonest_id, speechiness, key, energy,
+            """INSERT INTO tracks (name, spotify_uri, spotify_album_cover_url,
+            spotify_album_name, echonest_id, speechiness, key, energy,
             liveness, tempo, acousticness, instrumentalness, mode,
             time_signature, duration, loudness, valence, danceability) VALUES (
             %(name)s,
             %(spotify_uri)s,
+            %(spotify_album_cover_url)s,
+            %(spotify_album_name)s,
             %(echonest_id)s,
             %(speechiness)s,
             %(key)s,

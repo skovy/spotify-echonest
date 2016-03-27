@@ -1,8 +1,8 @@
 import spotipy
 import spotipy.util as util
 import time
-from database import Database
-from echonest import Echonest
+from src.db import Database
+from src.echonest import Echonest
 
 class Spotify:
     def __init__(self, username):
@@ -16,20 +16,20 @@ class Spotify:
             sp = spotipy.Spotify(auth=self.token)
             results = sp.current_user_saved_tracks(limit, offset)
             if len(results['items']) == 0:
-                print "No more saved tracks :("
+                print("No more saved tracks :(")
             return results['items']
         else:
-            print "Can't get token"
+            print("Can't get token")
             return []
 
     def parse_saved_tracks(self, num_of_songs, start = 0):
         offset = start # option to not start at the beginning
         limit = 20 # echonest rate limit :/
         while offset < num_of_songs:
-            print "Request at offset " + str(offset)
+            print("Request at offset " + str(offset))
             for item in self.saved_tracks(limit, offset):
                 # get the song data using Echonest
-                data = self.en.track_attributes(item['track']['uri'], item['track']['name'])
+                data = self.en.track_attributes(item)
                 if data:
                     self.db.add_row(data)
             offset += limit

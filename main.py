@@ -1,5 +1,5 @@
 import sys
-from src.database import Database
+from src.db import Database
 from src.spotify import Spotify
 
 def main():
@@ -8,7 +8,7 @@ def main():
     if len(sys.argv) > 1:
         username = sys.argv[1]
     else:
-        print "Please pass your Spotify username as the first parameter."
+        print("Please pass your Spotify username as the first parameter.")
         sys.exit()
 
     # create and validate a Spotify session
