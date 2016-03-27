@@ -13,6 +13,10 @@ def main():
 
     # create and validate a Spotify session
     sp = Spotify(username)
+
+    # modify the second paramter to start at an offset in saved tracks,
+    # ex: if it fails at offset 200 or the script is killed change the paramter
+    # to 200-220 (depending when it failed)
     sp.parse_saved_tracks(200, 0)
 
 if __name__ == "__main__":
